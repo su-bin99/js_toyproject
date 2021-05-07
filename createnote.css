@@ -1,0 +1,47 @@
+input, .noteText{
+    display: block;
+    width: 470px;
+    border : rgba(0, 0, 0, 0);
+    padding: 12px;
+    background-color: white;
+    border: 1px lightgrey solid;
+    border-radius: 8px;
+    margin: 10px 0px;
+}
+
+input:focus, .noteText:focus{
+    outline:2px #4888ff solid;
+}
+
+.editTime{
+    text-align: right;
+    margin:5px 4px 10px 4px;
+}
+
+.noteText{
+    min-height: 150px;
+    text-align: start;
+}
+
+.prevBtn{
+    margin : 10px 0px 0px 0px;
+    background-color: rgb(190, 190, 190);
+    border-color: rgb(190, 190, 190);
+}
+
+.prevBtn>a:active{
+    color: rgb(190, 190, 190);
+}
+
+.rmvBtn{
+    background-color: #F2BA91;
+    border-color: #F2BA91;
+}
+
+.rmvBtn>a:active{
+    color: #F2BA91;
+}
+
+.rmvBtn:active, .doneBtn:active, .prevBtn:active{
+    background-color: white;
+}
