@@ -1,4 +1,6 @@
 const list_contents = document.getElementById("list_contents");
+const searchBar = document.getElementById("searchBar");
+const sortBox = document.getElementById("sortBox");
 
 let useDate = (noteTime) => {
     let diff = new Date().getTime() - noteTime;
@@ -17,25 +19,59 @@ let useDate = (noteTime) => {
     // 86400 000ms = 1일
 }
 
-if(localStorage.length==0){
-    list_contents.innerHTML= "<p style = 'text-align : center'>No results</p>";
-}else{
-    let arr = JSON.parse(localStorage.getItem('notes'));
-    for(let i=0 ; i < arr.length ; i++){
-        let thisNote = JSON.parse(arr[i]);
-        console.log(thisNote);
+searchBar.addEventListener("change", (e)=>{
+    listInit(e.target.value, sortBox.selectedIndex);
+})
 
-        let oneNote = document.createElement('div');
-        oneNote.setAttribute("class", "oneNote");
-        oneNote.setAttribute("OnClick", `location.href = 'createnote.html?${thisNote.saveTime}'`)
+sortBox.addEventListener("change", () =>{
+    listInit(searchBar.value, sortBox.selectedIndex);
+})
 
-        let title = document.createElement('h4');
-        title.innerText = thisNote.title;
-        let body = document.createElement('p');
-        body.innerText = useDate(thisNote.saveTime);
+let attachOneNote=(thisNote)=>{
+    let oneNote = document.createElement('div');
+    oneNote.setAttribute("class", "oneNote");
+    oneNote.setAttribute("OnClick", `location.href = 'createnote.html?${thisNote.saveTime}'`)
 
-        oneNote.appendChild(title);
-        oneNote.appendChild(body);
-        list_contents.appendChild(oneNote);
+    let title = document.createElement('h4');
+    title.innerText = thisNote.title;
+    let body = document.createElement('p');
+    body.innerText = useDate(thisNote.saveTime);
+
+    oneNote.appendChild(title);
+    oneNote.appendChild(body);
+    list_contents.appendChild(oneNote);
+}
+
+let listInit = (searchKeyword,sort) =>{
+    while(list_contents.hasChildNodes()){
+        list_contents.removeChild(list_contents.firstChild);
+    }
+    
+    if(localStorage.length==0){
+        list_contents.innerHTML= "<p style = 'text-align : center'>No results</p>";
+    }else{
+        let arr = JSON.parse(localStorage.getItem('notes'));
+        let ParsedArr = arr.map((note)=>{
+            return JSON.parse(note);
+        })
+        console.log(ParsedArr);
+        ParsedArr
+            .filter(note => note.title.includes(searchKeyword))
+            .sort((a, b)=>{
+                switch(sort){
+                    case 0: {// 최신순
+                        return b.saveTime - a.saveTime;
+                    }case 1: { // 오래된 순
+                        return a.saveTime - b.saveTime;
+                    }case 2 : { // 알파벳 순
+                        return a.title.localeCompare(b.title);
+                    }
+                }
+            })
+            .map((note)=>{
+                attachOneNote(note);
+            })
     }
 }
+
+listInit("", 0);

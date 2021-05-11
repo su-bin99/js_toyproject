@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>Note List</title>
@@ -7,16 +8,25 @@
     <link href="noteList.css" type="text/css" rel="stylesheet">
 
 </head>
+
 <body>
     <script src="noteList.js" defer></script>
-    <div class = "AppContainer">
+    <div class="AppContainer">
         <h1>Notes App</h1>
         <h3>Take notes and never forget.</h3>
-        <input id = "searchBar" class = "searchBar" placeholder="Search">
-        <div id = "list_contents" class = "list_contents"></div>
-        <button class = "createBtn">
+        <div class = "row topContainer">
+            <input id="searchBar" class="searchBar" placeholder="Search">
+            <select id = "sortBox" class = "sortBox">
+                <option value="recently">최신순</option>
+                <option value="old">오래된순</option>
+                <option value="alphabet">가나다순</option>
+            </select>
+        </div>
+        <div id="list_contents" class="list_contents"></div>
+        <button class="createBtn">
             <a href="createnote.html">Create Note</a>
         </button>
     </div>
 </body>
+
 </html>
