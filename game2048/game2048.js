@@ -66,12 +66,15 @@ const gameStart = () => {
   }
 
   if (localStorage.getItem("table") == null) {
+    topScore.textContent = localStorage.getItem("topScore");
     put2or4ToRandomCell();
     draw();
   } else {
     history = JSON.parse(localStorage.getItem("history"));
     data = JSON.parse(localStorage.getItem("table"));
     score.textContent = localStorage.getItem("score");
+    topScore.textContent = localStorage.getItem("topScore");
+    console.log(localStorage.getItem("topScore"));
     put2or4ToRandomCell();
     draw();
   }
@@ -82,9 +85,11 @@ const saveGame = () => {
   if (prevTopScore == null) {
     localStorage.setItem("topScore", 0);
   } else {
-    if (prevTopScore < score) {
+    if (prevTopScore < +score.textContent) {
       topScore.textContent = score.textContent;
       localStorage.setItem("topScore", topScore.textContent);
+    } else {
+      topScore.textContent = prevTopScore;
     }
   }
   localStorage.setItem("table", JSON.stringify(data));
@@ -268,8 +273,10 @@ prevBtn.addEventListener("click", () => {
 
 freshBtn.addEventListener("click", () => {
   score.textContent = "0";
+  const topScoretemp = topScore.textContent;
   localStorage.clear();
   history = [];
   data = [];
+  localStorage.setItem("topScore", topScoretemp);
   gameStart();
 });
