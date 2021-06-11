@@ -9,14 +9,26 @@
     <script src="game2048.js" defer></script>
     <div class="contents">
       <div class="top">
-        <div id="score">0</div>
-        <div class="btn">
-          <div id="topScore">0</div>
-          <div id="fresh_btn">🔄</div>
-          <div id="prev_btn">PREV</div>
+        <div class="title">2048</div>
+        <div>
+          <div class="scores">
+            <div class="score">
+              <div>SCORE</div>
+              <span id="score">0</span>
+            </div>
+            <div class="score">
+              <div>BEST</div>
+              <span id="topScore">0</span>
+            </div>
+          </div>
+
+          <div class="btn">
+            <div id="fresh_btn">🔄</div>
+            <div id="prev_btn">⏪</div>
+          </div>
         </div>
       </div>
-      <table id="table"></table>
+      <table id="table" class="table"></table>
     </div>
   </body>
 </html>
