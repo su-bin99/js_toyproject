@@ -1,32 +1,45 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="logo.png" />
+    <meta
+      property="og:image"
+      content="https://images.velog.io/images/sukong/post/adc57ac7-94b8-4cf8-93fa-67d043f9b6d0/310x150.png"
+    />
+    <meta
+      property="og:description"
+      content="Subin's note app made with Vanilla js"
+    />
+    <meta property="og:title" content="Subin's Note App" />
+    <title>Note App</title>
+    <link rel="manifest" href="manifest.json" />
+    <link href="defaultStyle.css" type="text/css" rel="stylesheet" />
+    <link href="noteList.css" type="text/css" rel="stylesheet" />
+    <script type="module">
+      import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
+      const el = document.createElement("pwa-update");
+      document.body.appendChild(el);
+    </script>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Note List</title>
-    <link href="defaultStyle.css" type="text/css" rel="stylesheet">
-    <link href="noteList.css" type="text/css" rel="stylesheet">
-
-</head>
-
-<body>
+  <body>
     <script src="noteList.js" defer></script>
     <div class="AppContainer">
-        <h1>Notes App</h1>
-        <h3>Take notes and never forget.</h3>
-        <div class = "row topContainer">
-            <input id="searchBar" class="searchBar" placeholder="Search">
-            <select id = "sortBox" class = "sortBox">
-                <option value="recently">최신순</option>
-                <option value="old">오래된순</option>
-                <option value="alphabet">가나다순</option>
-            </select>
-        </div>
-        <div id="list_contents" class="list_contents"></div>
-        <button class="createBtn">
-            <a href="createnote.html">Create Note</a>
-        </button>
+      <h1>Notes App</h1>
+      <h3>Take notes and never forget.</h3>
+      <div class="row topContainer">
+        <input id="searchBar" class="searchBar" placeholder="Search" />
+        <select id="sortBox" class="sortBox">
+          <option value="recently">최신순</option>
+          <option value="old">오래된순</option>
+          <option value="alphabet">가나다순</option>
+        </select>
+      </div>
+      <div id="list_contents" class="list_contents"></div>
+      <button class="createBtn">
+        <a href="createnote.html">Create Note</a>
+      </button>
     </div>
-</body>
-
+  </body>
 </html>
